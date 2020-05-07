@@ -1,6 +1,6 @@
 """
 matrix_for_you
-version 0.2020.05.06
+version 1.2020.05.07
 geschrieben von Robert Armand Bedard
 special thanks to love
 
@@ -48,10 +48,17 @@ def matrix_generator_n(n):
     return np.array([[x*y for x in range(1, n + 1)] for y in range(1, n + 1)])
 
 def matrix_spalte(spalte, matrix):
-    """Diese Funktion gibt eine beliebige Spalte einer beliebigen n*n-Matrix aus
+    """
+    Diese Funktion gibt eine beliebige Spalte einer beliebigen n*n-Matrix aus
     Argument (spalte = int , matrix = array
-        """
+    """
     return [matrix[spalte, x] for x in matrix[0]-1] # Erstellung einer Spalte als liste
+
+def matrix_zeile(zeile, matrix):
+    """Diese Funktion gibt eine beliebige Zeile einer beliebigen n*n-Matrix aus
+    Argument (spalte = int , matrix = array
+    """
+    return matrix[zeile]
 
 print("""
 
@@ -114,8 +121,9 @@ while hauptroutine == True: # Diese Schleife läuft, bis der nutzer "exit" eingi
     while True: # wir stellen sicher, dass die Spaltenangabe auch eine positive, ganze Zahl ist
         try:
             n_matrix_spalte = int(input("Welche Spalte willst du abtrennen? ")) - 1
-            if n_matrix_spalte < 0 or n_matrix_spalte > matrix_size:
-                print("Vielleicht war das mit der Sezession doch keine so gute Idee... Wir brauchen ganze, positive Zahlen, die trotzdem nicht größer sind, als die Matrix selbst.")
+            if n_matrix_spalte < 0 or n_matrix_spalte > matrix_size-1:
+                print("Vielleicht war das mit der Sezession doch keine so gute Idee...")
+                print("Wir brauchen ganze, positive Zahlen, die trotzdem nicht größer sind, als die Matrix selbst.")
             else:
                 break
         except ValueError:
@@ -127,6 +135,24 @@ while hauptroutine == True: # Diese Schleife läuft, bis der nutzer "exit" eingi
     print()
     print(wunsch_spalte)
     input()
+    while True: # wir stellen sicher, dass die Zeilenangabe auch eine positive, ganze Zahl ist
+        try:
+            n_matrix_zeile = int(input("Welche Zeile willst du abtrennen? ")) - 1
+            if n_matrix_zeile < 0 or n_matrix_zeile > matrix_size-1:
+                print("Vielleicht war das mit der Sezession doch keine so gute Idee...")
+                print("Wir brauchen ganze, positive Zahlen, die trotzdem nicht größer sind, als die Matrix selbst.")
+            else:
+                break
+        except ValueError:
+            print("Vielleicht sollten wir das ganze Unterfangen lieber vergessen. Wir bräuchten doch ganze, positive Zahlen!")
+
+    wunsch_zeile = matrix_zeile(n_matrix_zeile, n_matrix)
+    print()
+    print("Die ", n_matrix_zeile + 1, " Zeile deiner persönlichen, einzigartigen Wunschmatrix,\n", 
+        "lautet:")
+    print()
+    print(wunsch_zeile)
+
     weiter = input("Wollen wir das ganze nochmal machen? Falls du die Lust verloren hast, gebe einfach exit ein. ")
     if weiter == "exit":
         hauptroutine = False
