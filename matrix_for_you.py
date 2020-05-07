@@ -84,7 +84,11 @@ print("Generiere Zufallsmatrix")
 print(zufalls_matrix_1)
 print("Das Produkt der Diagonaleinträge beträgt ", matrix_diagonalprodukt(zufalls_matrix_1))
 
-while True: # Schleife, die den Nutzer nach der Größe matrix_size der Matrix fragt und sicher stellt, dass nur ganze positive Zahlen angegeben werden
+while True:
+    """ 
+    Schleife, die den Nutzer nach der Größe matrix_size der Matrix fragt und sicher stellt, 
+    dass nur ganze positive Zahlen angegeben werden
+    """
     try:
         matrix_size = int(input("Geben sie n für die Generierung einer n*n-Matrix ein: "))
         if matrix_size <= 0:
@@ -131,10 +135,10 @@ while hauptroutine == True: # Diese Schleife läuft, bis der nutzer "exit" eingi
 
     wunsch_spalte = matrix_spalte(n_matrix_spalte, n_matrix)
     print()
-    print("Die ", n_matrix_spalte+1, ". Spalte deiner Wunschmatrix lautet:")
+    print("Die", str(n_matrix_spalte+1) + ". Spalte deiner Wunschmatrix lautet:")
     print()
     print(wunsch_spalte)
-    input()
+    print()
     while True: # wir stellen sicher, dass die Zeilenangabe auch eine positive, ganze Zahl ist
         try:
             n_matrix_zeile = int(input("Welche Zeile willst du abtrennen? ")) - 1
@@ -148,10 +152,11 @@ while hauptroutine == True: # Diese Schleife läuft, bis der nutzer "exit" eingi
 
     wunsch_zeile = matrix_zeile(n_matrix_zeile, n_matrix)
     print()
-    print("Die ", n_matrix_zeile + 1, " Zeile deiner persönlichen, einzigartigen Wunschmatrix,\n", 
-        "lautet:")
+    print("Die", str(n_matrix_zeile + 1) + ". Zeile deiner persönlichen, einzigartigen Wunschmatrix,\n" 
+        + "lautet:")
     print()
     print(wunsch_zeile)
+    print()
 
     weiter = input("Wollen wir das ganze nochmal machen? Falls du die Lust verloren hast, gebe einfach exit ein. ")
     if weiter == "exit":
